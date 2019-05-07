@@ -1,7 +1,12 @@
-places365_standard/*
+# Folders
+places365_standard*
+weights*
+logs*
+temp*
+
+# Files
 *.ipynb_checkpoints*
 *__pycache__*
 *.DS_Store*
-*temp*
 *.pyc
 *.zip

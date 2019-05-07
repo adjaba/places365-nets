@@ -1,4 +1,4 @@
-# places365-nets
+# Places365-Nets
 
 ## Requirements
 
