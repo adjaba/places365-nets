@@ -1,0 +1,7 @@
+places365_standard/*
+*.ipynb_checkpoints*
+*__pycache__*
+*.DS_Store*
+*temp*
+*.pyc
+*.zip
