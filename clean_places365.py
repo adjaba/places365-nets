@@ -17,9 +17,8 @@ def main(filename):
     with open(filepath, 'r') as fp:
         files = [x.strip() for x in fp.readlines()]
 
-    # min and max dictionary for training set
-    min_max = {'min': [float('inf')] * 3,
-               'max': [float('-inf')] * 3}
+    # meta dictionary for training set
+    meta = {'sum': [0] * 3, 'cnt': 0}
 
     # read the files
     with open('{}.txt'.format(filename), 'w') as fp:
@@ -37,13 +36,10 @@ def main(filename):
 
             # if reading from train partition, update the min and max
             if filename == 'train':
-                img_min = img.min(axis=(0, 1))
-                img_max = img.max(axis=(0, 1))
+                img_sum = img.sum(axis=(0, 1))
                 for i in range(img.shape[2]):
-                    if img_min[i] < min_max['min'][i]:
-                        min_max['min'][i] = float(img_min[i])
-                    elif img_max[i] > min_max['max'][i]:
-                        min_max['max'][i] = float(img_max[i])
+                    meta['sum'][i] += int(img_sum[i])
+                meta['cnt'] = meta['cnt'] + 1
 
             # delete the image object
             del img
@@ -57,9 +53,10 @@ def main(filename):
     os.rename('{}.txt'.format(filename),
               os.path.join('places365_standard', '{}.txt'.format(filename)))
 
-    # dump the min_max dictionary into meta directory
-    print(min_max)
-    json.dump(min_max, open(os.path.join('meta', 'min_max.json'), 'w'))
+    # dump the meta dictionary into meta directory
+    if filename == 'train':
+        print(meta)
+        json.dump(meta, open(os.path.join('meta', 'meta_places365.json'), 'w'))
 
 
 if __name__ == '__main__':
