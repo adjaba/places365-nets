@@ -13,6 +13,15 @@
 | **Package** | **Version** |
 | :---------: | :---------: |
 |  **python** |     3.6     |
+|  **numpy**  |    1.15.4   |
+| **imageio** |    2.4.1    |
+
+## Instructions to Train and Evaluate the Model
+
+1.  `./download_places365` - Command to Download and Extract the Places365 Dataset.
+2.  Clean the dataset and remove grayscale images.
+    -   `python clean_places365.py train` - Clean the training dataset
+    -   `python clean_places365.py val` - Clean the validation dataset
 
 ## Files
 
