@@ -1,3 +1,4 @@
+from progressbar import ProgressBar, Bar, Percentage
 from imageio import imread
 import numpy as np
 import json
@@ -22,6 +23,8 @@ def main(filename):
 
     # read the files
     with open('{}.txt'.format(filename), 'w') as fp:
+        bar = ProgressBar(widgets=[Bar('=', '[', ']'), ' ', Percentage()],
+                          maxval=len(files)).start()
         for i, file in enumerate(files):
             # read the image at i'th position
             img = imread(os.path.join('places365_standard', file))
@@ -47,16 +50,15 @@ def main(filename):
 
             # write the filepath to file
             fp.write('{}\n'.format(file))
-            if i % 100 == 0:
-                print('.', end='')
-            if i % 10000 == 0:
-                print()
+            bar.update(i + 1)
+        bar.finish()
 
     # replace the existing file inside places365_standard
     os.rename('{}.txt'.format(filename),
               os.path.join('places365_standard', '{}.txt'.format(filename)))
 
     # dump the min_max dictionary into meta directory
+    print(min_max)
     json.dump(min_max, open(os.path.join('meta', 'min_max.json'), 'w'))
 
 

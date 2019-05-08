@@ -4,17 +4,18 @@
 
 ### UNIX Packages
 
-|  **Packages** |                           **Purpose**                          |
-| :-----------: | :------------------------------------------------------------: |
+| **Packages**  | **Purpose**                                                    |
+| ------------- | -------------------------------------------------------------- |
 | **wget, tar** | **Download** and **Extract** **Places365** Easy Format Dataset |
 
 ### Python Packages
 
-| **Package** | **Version** |
-| :---------: | :---------: |
-|  **python** |     3.6     |
-|  **numpy**  |    1.15.4   |
-| **imageio** |    2.4.1    |
+| **Package**     | **Version** |
+| --------------- | ----------- |
+| **python**      | 3.6         |
+| **numpy**       | 1.15.4      |
+| **progressbar** | 2.5         |
+| **imageio**     | 2.4.1       |
 
 ## Instructions to Train and Evaluate the Model
 
@@ -26,6 +27,7 @@
 ## Files
 
 -   `download_places365` - Executable script to download and extract the Places365 dataset.
+-   `clean_places365.py` - Script to clean the dataset. 
 -   `classes.txt` - Sorted list of classes in Places365.
 
 ## Folders
